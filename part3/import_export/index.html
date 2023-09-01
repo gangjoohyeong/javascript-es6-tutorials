@@ -1,0 +1,15 @@
+<script type="module">
+    // c는 변수명 다르게 해도 됨 (export deafult로 가져오는 변수)
+    import c, {a as AA, b} from '/library.js';
+    console.log(AA); // 10
+
+    // import * as lib from from '/library.js';
+    // lib.a, lib.b, ... 이런 식으로 불러오자
+
+    // [참고]
+    // require(~) -> 옛날 문법
+    // frontend 개발에서는 <script src="library.js"> 주로 사용
+</script>
+
+
+
