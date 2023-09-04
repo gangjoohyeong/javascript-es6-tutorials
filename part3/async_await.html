@@ -1,0 +1,17 @@
+
+
+<button id="btn">버튼</button>
+
+<script>
+    async function clickButton() {
+        var promise = new Promise(function(resolve, reject) {
+            document.getElementById("btn").addEventListener('click', function() {
+               resolve('Success!'); 
+            })
+        });
+        
+        var result = await promise;
+        console.log(result);
+    }
+    clickButton();
+</script>
