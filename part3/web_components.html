@@ -1,0 +1,27 @@
+<body>
+
+<custom-input name="PW"></custom-input>
+<custom-input name="Email"></custom-input>
+<script>
+    class class1 extends HTMLElement {
+        connectedCallback() {
+            let name = this.getAttribute('name');
+            this.innerHTML = `<label>${name} Input</label><input>`;
+        }
+        // name이라는 attribute가 바뀔 때마다 호출됨
+        static get observedAttributes() {
+            return ['name'];
+        }
+        attributeChangedCallback(name, oldValue, newValue) {
+            console.log(name, oldValue, newValue);
+        }
+    }
+    customElements.define('custom-input', class1);
+
+// Web Compontents 사용하면 긴 HTML도 함수처럼 재사용 가능
+// 이런 걸 잘하는 게 React.js, Vue.js, ...
+</script>
+
+
+</body>
+
