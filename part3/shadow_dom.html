@@ -1,0 +1,40 @@
+
+
+<body>
+    <template id = "template1">
+        <!-- template: 임시 보관함    -->
+        <label>이름을 입력하세요</label><input>
+        <style>label { color : red }</style>
+    </template>
+    <div id="mordor"></div>
+    <custom-input></custom-input>
+    <script>
+        document.querySelector('#mordor').attachShadow({mode: 'open'})
+        document.querySelector('#mordor').shadowRoot.innerHTML = '<p>하이요</p>'
+
+        // Web components + Shadow DOM: 모듈화 가능
+
+
+
+
+        // Web components에 스타일 넣고 싶을 때 Shadow DOM 사용하면 됨
+        // Shadow DOM에 넣은 것들은 외부에 영향을 주지 않음
+        
+        class class1 extends HTMLElement {
+            connectedCallback() {
+            // 아래 주석처럼 <style> 넣으면 다른 label 태그에도 영향이 갈 수 있음
+              // this.innerHTML = `<label>이름을 입력하세요</label><input>
+                // <style> label { color : red } </style>`
+
+                this.attachShadow({mode : 'open'});
+                // this.shadowRoot.innerHTML = `<label>이름을 입력하세요</label><input>
+                // <style> label { color : red } </style>`
+                // 위 주석 대신해서 template에 임시 보관한 걸 불러오는 방법
+                this.shadowRoot.append(template1.content.cloneNode(true));
+            }
+          }
+          
+          customElements.define("custom-input", class1);
+    </script>
+
+</body>
